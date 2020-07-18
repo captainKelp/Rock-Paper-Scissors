@@ -18,8 +18,7 @@ def get_winner(call):
 
     # 1. Create random integer 1-3 to use as computer's play
     computerChoice.randrange(1, 2, 3)
-    computer
-    outcome
+
     # 2. Using if-statements, assign the computer to a choice (rock, paper, scissors) using the random integer generated
     if computerChoice == 1:
         computerChoice = "rock"
@@ -34,7 +33,7 @@ def get_winner(call):
 
 
     #   Rock beats Scissors
-    if (event == "<rock>") & (computerChoice == "scissors"):
+    if (event == "rock") & (computerChoice == "scissors"):
         win = win + 1
         outcome = "you win"
     else:
@@ -59,8 +58,6 @@ def pass_p():
     get_winner("paper")
 
 window = tkinter.Tk()
-
-
 
 
 #Variable to count the number of wins the user gets
