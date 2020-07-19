@@ -3,14 +3,15 @@ import tkinter
 
 #NOTE: A function that determines whether the user wins or not
 #      Passes the user's choice (based on what button they click)to the parameter
+window = tkinter.Tk()
 
 def get_winner(call):
-    if event == "<rock":
-        userChoice = "rock"
-    if event == "<paper>":
-        userChoice = "paper"
-    if event == "<scissors>":
-        userChoice = "scissors"
+    buttons = rock, paper, scissors
+    for button in buttons:
+        if button is clicked(button):
+            print(button)
+            userChoice = str(button)
+
 
     # Access variables declared after the function so that the variables can be changed inside of the function
     global wins, win, output
@@ -46,12 +47,15 @@ def get_winner(call):
     if (userChoice == computerChoice):
         outcome = "you tied"
     else:
-        output = "you lose"
+        outcome = "you lose"
     return outcome
 
     # If the user wins, increase win by 1
     # Use the output label to write what the computer did and what the result was (win, loss, tie)
-
+    #this onyl has computer's choice
+    #must include if you won, lost, or tied the current match
+    #shouldn't there be a limit to matches before we get the final result and total wins label (located at the end of the program)
+    output = tkinter.Label(row = 0, column = 1, text = computerChoice)
 
 # Use these functions as "command" for each button
 def pass_s():
@@ -61,15 +65,16 @@ def pass_r():
 def pass_p():
     get_winner("paper")
 
-window = tkinter.Tk()
-
-
 #Variable to count the number of wins the user gets
 win = 0
 
 #START CODING HERE
 
+
 # 1. Create 3 buttons for each option (rock, paper, scissors)
+def clicked(event):
+    print("clicked at", event.x, event.y)
+
 rock = tkinter.Button(
 text = "Rock",
 width = 15,
@@ -94,49 +99,43 @@ bg = "grey",
 fg = "white",
 )
 
-#Allows buttons to function
-def callback(event):
-    print("clicked at", event.x, event.y)
-
-rock.bind("<Button-1>", callback)
-paper.bind("<Button-1>", callback)
-scissors.bind("<Button-1>", callback)
+#binds Button CLicking Event to Buttons
+rock.bind("<Button-1>", clicked)
+paper.bind("<Button-1>", clicked)
+scissors.bind("<Button-1>", clicked)
 
 # 2. Create 2 labels for the result and the number of wins
-stats = tkinter.Label(text = "result: ")
+stats = tkinter.Label(text = "result: " + outcome)
 score = tkinter.Label(text = "score: " + str(win))
 
 
 # 3. Arrange the buttons and labels using grid
 
 #columns
-
-frame = tkinter.Frame(
-    master = window,
-    relief = tkinter.RAISED,
-    borderwidth = 1
-)
-
-frame.grid(row = 0, column = 1, padx = 5, pady = 5)
-
-buttons = tkinter.Button(master = frame)
-
-#window.columnconfigure(1, weight = 1, minsize = 25)
-#window.columnconfigure(2, weight = 1, minsize = 25)
-#window.columnconfigure(3, weight = 1, minsize = 25)
+window.columnconfigure(1, weight = 1, minsize = 25)
+window.columnconfigure(2, weight = 1, minsize = 25)
+window.columnconfigure(3, weight = 1, minsize = 25)
 
 #rows
-#window.rowconfigure(0, weight = 1, minsize = 25)
-#window.rowconfigure(1, weight = 1, minsize = 25)
+window.rowconfigure(0, weight = 1, minsize = 25)
+window.rowconfigure(1, weight = 1, minsize = 25)
 
 #buttons
-#rock.grid(row = 1, column = 1)
-#paper.grid(row = 1, column = 2)
-#scissors.grid(row = 1, column = 3)
+rock.grid(row = 1, column = 1)
+paper.grid(row = 1, column = 2)
+scissors.grid(row = 1, column = 3)
 
 #labels
-#stats.grid(row = 0, column = 2)
-#score.grid(row = 0, column = 3)
+stats.grid(row = 0, column = 2)
+score.grid(row = 0, column = 3)
+
+#for button in buttons:
+#    frame = tkinter.Frame(
+#        master = window,
+#        relief = tkinter.RAISED,
+#        borderwidth = 1
+#    )
+#    frame.grid(row = buttons, padx = 5, pady = 5)
 
 
 window.mainloop()
