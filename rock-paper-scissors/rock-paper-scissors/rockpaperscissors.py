@@ -3,19 +3,14 @@ import tkinter
 
 #NOTE: A function that determines whether the user wins or not
 #      Passes the user's choice (based on what button they click)to the parameter
-window = tkinter.Tk()
-
 def get_winner(call):
-    buttons = rock, paper, scissors
-    for button in buttons:
-        if button is clicked(button):
-            userChoice = pass(button)
+
 
     # Access variables declared after the function so that the variables can be changed inside of the function
     global wins, win, output
 
     # 1. Create random integer 1-3 to use as computer's play
-    computerChoice.randrange(1, 2, 3)
+    computerChoice = random.randrange(1, 4)
 
     # 2. Using if-statements, assign the computer to a choice (rock, paper, scissors) using the random integer generated
     if computerChoice == 1:
@@ -27,22 +22,21 @@ def get_winner(call):
     return computerChoice
 
     # 3. Determine the winner based on what the user chose and what the computer chose
-    root = tkinter()
 
     #   Rock beats Scissors
-    if (userChoice == "rock") & (computerChoice == "scissors"):
+    if (call == "rock") & (computerChoice == "scissors"):
         win += 1
         outcome = "you win"
     #   Paper beats Rock
-    if (userChoice == "paper") & (computerChoice == "rock"):
+    if (call == "paper") & (computerChoice == "rock"):
         win += 1
         outcome = "you win"
     #   Scissors beats Paper
-    if (userChoice == "scissors") & (computerChoice == "paper"):
+    if (call == "scissors") & (computerChoice == "paper"):
         win += 1
         outcome = "you win"
     #   It's a tie if the computer and user chose the same object
-    if (userChoice == computerChoice):
+    if (call == computerChoice):
         outcome = "you tied"
     else:
         outcome = "you lose"
@@ -56,21 +50,19 @@ def get_winner(call):
     output = tkinter.Label(row = 0, column = 1, text = computerChoice)
 
 # Use these functions as "command" for each button
-def pass(button):
-    get_winner(button)
 
-#def pass_s():
-#    get_winner("scissors")
-#def pass_r():
-#    get_winner("rock")
-#def pass_p():
-#    get_winner("paper")
+def pass_s():
+   get_winner("scissors")
+def pass_r():
+    get_winner("rock")
+def pass_p():
+    get_winner("paper")
 
 #Variable to count the number of wins the user gets
 win = 0
 
 #START CODING HERE
-
+window = tkinter.Tk()
 
 # 1. Create 3 buttons for each option (rock, paper, scissors)
 def clicked(event):
@@ -82,6 +74,7 @@ width = 15,
 height = 5,
 bg = "grey",
 fg = "white",
+command = pass_r()
 )
 
 paper = tkinter.Button(
@@ -90,6 +83,7 @@ width = 15,
 height = 5,
 bg = "grey",
 fg = "white",
+command = pass_p()
 )
 
 scissors = tkinter.Button(
@@ -98,16 +92,16 @@ width = 15,
 height = 5,
 bg = "grey",
 fg = "white",
+command = pass_s()
 )
 
 #binds Button CLicking Event to Buttons
-rock.bind("<Button-1>", clicked)
-paper.bind("<Button-1>", clicked)
-scissors.bind("<Button-1>", clicked)
 
 # 2. Create 2 labels for the result and the number of wins
-stats = tkinter.Label(text = "result: " )
+stats = tkinter.Label(text = "result: ")
 score = tkinter.Label(text = "score: " + str(win))
+
+stats.config(text = outcome)
 
 
 # 3. Arrange the buttons and labels using grid
