@@ -19,35 +19,30 @@ def get_winner(call):
         computerChoice = "paper"
     if computerChoice == 3:
         computerChoice = "scissors"
-    return computerChoice
-
     # 3. Determine the winner based on what the user chose and what the computer chose
 
     #   Rock beats Scissors
-    if (call == "rock") & (computerChoice == "scissors"):
+    if (call == "rock") and (computerChoice == "scissors"):
+        print("you clicked rock")
         win += 1
         outcome = "you win"
     #   Paper beats Rock
-    if (call == "paper") & (computerChoice == "rock"):
+    elif (call == "paper") and (computerChoice == "rock"):
         win += 1
         outcome = "you win"
     #   Scissors beats Paper
-    if (call == "scissors") & (computerChoice == "paper"):
+    elif (call == "scissors") and (computerChoice == "paper"):
         win += 1
         outcome = "you win"
     #   It's a tie if the computer and user chose the same object
-    if (call == computerChoice):
+    elif (call == computerChoice):
         outcome = "you tied"
     else:
         outcome = "you lose"
-    return outcome
-
+    stats.config(text = outcome)
+    score.config(text = win)
     # If the user wins, increase win by 1
     # Use the output label to write what the computer did and what the result was (win, loss, tie)
-    #this onyl has computer's choice
-    #must include if you won, lost, or tied the current match
-    #shouldn't there be a limit to matches before we get the final result and total wins label (located at the end of the program)
-    output = tkinter.Label(row = 0, column = 1, text = computerChoice)
 
 # Use these functions as "command" for each button
 
@@ -74,7 +69,7 @@ width = 15,
 height = 5,
 bg = "grey",
 fg = "white",
-command = pass_r()
+command = pass_r
 )
 
 paper = tkinter.Button(
@@ -83,7 +78,7 @@ width = 15,
 height = 5,
 bg = "grey",
 fg = "white",
-command = pass_p()
+command = pass_p
 )
 
 scissors = tkinter.Button(
@@ -92,7 +87,8 @@ width = 15,
 height = 5,
 bg = "grey",
 fg = "white",
-command = pass_s()
+command = pass_s
+
 )
 
 #binds Button CLicking Event to Buttons
@@ -101,7 +97,6 @@ command = pass_s()
 stats = tkinter.Label(text = "result: ")
 score = tkinter.Label(text = "score: " + str(win))
 
-stats.config(text = outcome)
 
 
 # 3. Arrange the buttons and labels using grid
