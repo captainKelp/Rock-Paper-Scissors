@@ -9,9 +9,7 @@ def get_winner(call):
     buttons = rock, paper, scissors
     for button in buttons:
         if button is clicked(button):
-            print(button)
-            userChoice = str(button)
-
+            userChoice = pass(button)
 
     # Access variables declared after the function so that the variables can be changed inside of the function
     global wins, win, output
@@ -58,12 +56,15 @@ def get_winner(call):
     output = tkinter.Label(row = 0, column = 1, text = computerChoice)
 
 # Use these functions as "command" for each button
-def pass_s():
-    get_winner("scissors")
-def pass_r():
-    get_winner("rock")
-def pass_p():
-    get_winner("paper")
+def pass(button):
+    get_winner(button)
+
+#def pass_s():
+#    get_winner("scissors")
+#def pass_r():
+#    get_winner("rock")
+#def pass_p():
+#    get_winner("paper")
 
 #Variable to count the number of wins the user gets
 win = 0
@@ -73,7 +74,7 @@ win = 0
 
 # 1. Create 3 buttons for each option (rock, paper, scissors)
 def clicked(event):
-    print("clicked at", event.x, event.y)
+    print("clicked at", event.x, event.y, Button-1)
 
 rock = tkinter.Button(
 text = "Rock",
@@ -105,7 +106,7 @@ paper.bind("<Button-1>", clicked)
 scissors.bind("<Button-1>", clicked)
 
 # 2. Create 2 labels for the result and the number of wins
-stats = tkinter.Label(text = "result: " + outcome)
+stats = tkinter.Label(text = "result: " )
 score = tkinter.Label(text = "score: " + str(win))
 
 
